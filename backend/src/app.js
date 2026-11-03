@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -27,10 +28,18 @@ if (process.env.NODE_ENV === "development") {
 
 // Health check API
 app.get("/api/v1/health", (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: "TaskFlow API is running",
-        environment: process.env.NODE_ENV,
+    const databaseConnected =
+        mongoose.connection.readyState === 1;
+
+    res.status(databaseConnected ? 200 : 503).json({
+        success: databaseConnected,
+        message: "TaskFlow API health status",
+        services: {
+            api: "running",
+            database: databaseConnected
+                ? "connected"
+                : "disconnected",
+        },
     });
 });
 
