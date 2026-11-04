@@ -15,17 +15,3 @@ export const generateAccessToken = (user) => {
     );
 };
 
-export const generateRefreshToken = (user) => {
-    return jwt.sign(
-        {
-            sub: user._id.toString(),
-            type: "refresh",
-        },
-        process.env.JWT_REFRESH_SECRET,
-        {
-            expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN || "7d",
-            issuer: "taskflow-api",
-            audience: "taskflow-client",
-        }
-    );
-};

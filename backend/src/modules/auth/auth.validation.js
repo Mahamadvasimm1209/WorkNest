@@ -17,7 +17,11 @@ export const registerSchema = z.object({
     password: z
         .string()
         .min(8, "Password must contain at least 8 characters")
-        .max(72, "Password is too long"),
+        .refine(
+            (password) =>
+                Buffer.byteLength(password, "utf8") <= 72,
+            "Password cannot exceed 72 bytes"
+        ),
 
 
 }).strict();
@@ -33,5 +37,9 @@ export const loginSchema = z.object({
     password: z
         .string()
         .min(1, "Password is required")
-        .max(72, "Invalid credentials"),
+        .refine(
+            (password) =>
+                Buffer.byteLength(password, "utf8") <= 72,
+            "Password cannot exceed 72 bytes"
+        ),
 }).strict();

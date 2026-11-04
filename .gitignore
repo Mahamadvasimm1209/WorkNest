@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+
+# environment files
+.env
+.env.*
+
+!.env.example
+
+# build output
+dist/
+coverage/
+
+# misc
+.DS_Store

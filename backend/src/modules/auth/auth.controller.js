@@ -1,7 +1,12 @@
-import { registerSchema } from "./auth.validation.js";
-import { registerUser } from "./auth.service.js";
-import { loginSchema } from "./auth.validation.js";
-import { loginUser } from "./auth.service.js";
+import {
+    registerSchema,
+    loginSchema,
+} from "./auth.validation.js";
+
+import {
+    registerUser,
+    loginUser,
+} from "./auth.service.js";
 
 
 export const register = async (req, res) => {
