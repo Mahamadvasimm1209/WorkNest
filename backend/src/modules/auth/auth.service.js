@@ -1,5 +1,12 @@
 import User from "./auth.model.js";
 import { generateAccessToken } from "../../utils/generateTokens.js";
+import Session from "../sessions/session.model.js";
+
+import {
+    generateRefreshToken,
+    hashRefreshToken,
+    getRefreshTokenExpiry,
+} from "../../utils/refreshToken.js";
 
 export const registerUser = async ({ name, email, password }) => {
     const existingUser = await User.findOne({ email });
@@ -20,24 +27,14 @@ export const registerUser = async ({ name, email, password }) => {
 };
 
 export const loginUser = async ({ email, password }) => {
-    // Find user and explicitly include password hash
     const user = await User.findOne({ email }).select("+password");
 
-    // Use the same error for invalid email and password
-    if (!user) {
+    if (!user || !user.isActive) {
         const error = new Error("Invalid email or password");
         error.statusCode = 401;
         throw error;
     }
 
-    // Check account status
-    if (!user.isActive) {
-        const error = new Error("Invalid email or password");
-        error.statusCode = 401;
-        throw error;
-    }
-
-    // Compare entered password with stored hash
     const isPasswordValid = await user.comparePassword(password);
 
     if (!isPasswordValid) {
@@ -49,9 +46,27 @@ export const loginUser = async ({ email, password }) => {
     // Generate access token
     const accessToken = generateAccessToken(user);
 
+    // Generate opaque refresh token
+    const refreshToken = generateRefreshToken();
+
+    // Hash refresh token before database storage
+    const refreshTokenHash = hashRefreshToken(refreshToken);
+
+    // Calculate session expiration
+    const expiresAt = getRefreshTokenExpiry();
+
+    // Create persistent session
+    await Session.create({
+        user: user._id,
+        refreshTokenHash,
+        expiresAt,
+    });
+
     return {
         user,
         accessToken,
+        refreshToken,
+        expiresAt,
     };
 };
 

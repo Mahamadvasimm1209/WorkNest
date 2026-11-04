@@ -87,9 +87,17 @@ export const login = async (req, res) => {
         }
 
         // Authenticate user
-        const { user, accessToken } = await loginUser(
-            validation.data
-        );
+        const { user, accessToken, refreshToken, expiresAt } =
+            await loginUser(validation.data);
+
+        // Send refresh token through an HttpOnly cookie
+        res.cookie("taskflow_refresh_token", refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            path: "/api/v1/auth",
+            expires: expiresAt,
+        });
 
         return res.status(200).json({
             success: true,
