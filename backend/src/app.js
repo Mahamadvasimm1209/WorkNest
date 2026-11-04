@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import authRoutes from "./modules/auth/auth.routes.js";
 import { authenticate } from "./middleware/authenticate.js";
+import projectRoutes from "./modules/projects/project.routes.js";
 
 const app = express();
 
@@ -43,6 +44,8 @@ app.get("/api/v1/protected-test", authenticate, (req, res) => {
         user: req.user,
     });
 });
+
+app.use("/api/v1/projects", projectRoutes);
 
 // Health check API
 app.get("/api/v1/health", (req, res) => {

@@ -23,7 +23,7 @@ const startServer = async () => {
         });
 
     } catch (error) {
-        console.error("Application startup failed:", error.message);
+        console.error("Application startup failed:", error.stack);
         process.exit(1);
     }
 };
