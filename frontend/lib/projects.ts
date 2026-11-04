@@ -14,7 +14,7 @@ export interface Project {
 export interface CreateProjectData {
     name: string;
     description?: string;
-    status?: "active" | "on-hold" | "completed";
+    status?: Project["status"];
 }
 
 interface ProjectsResponse {
@@ -34,45 +34,48 @@ interface CreateProjectResponse {
     };
 }
 
-// GET: Fetch all projects belonging to the logged-in user
-export const getProjects = async (): Promise<Project[]> => {
+interface ApiResponse {
+    success: boolean;
+    message: string;
+}
+
+const getAuthHeaders = (): HeadersInit => {
     const token = sessionStorage.getItem("accessToken");
 
     if (!token) {
-        throw new Error("Please log in to view your projects.");
+        throw new Error("Please log in to continue.");
     }
 
+    return {
+        Authorization: `Bearer ${token}`,
+    };
+};
+
+// GET ALL PROJECTS
+export const getProjects = async (): Promise<Project[]> => {
     const response = await fetch(`${API_URL}/projects`, {
         method: "GET",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
+        headers: getAuthHeaders(),
     });
 
     const result: ProjectsResponse = await response.json();
 
     if (!response.ok) {
-        throw new Error(result.message || "Failed to fetch projects");
+        throw new Error(result.message || "Failed to fetch projects.");
     }
 
     return result.data.projects;
 };
 
-// POST: Create a new project
+// CREATE PROJECT
 export const createProject = async (
     projectData: CreateProjectData
 ): Promise<Project> => {
-    const token = sessionStorage.getItem("accessToken");
-
-    if (!token) {
-        throw new Error("Please log in to create a project.");
-    }
-
     const response = await fetch(`${API_URL}/projects`, {
         method: "POST",
         headers: {
+            ...getAuthHeaders(),
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(projectData),
     });
@@ -80,36 +83,27 @@ export const createProject = async (
     const result: CreateProjectResponse = await response.json();
 
     if (!response.ok) {
-        throw new Error(result.message || "Failed to create project");
+        throw new Error(result.message || "Failed to create project.");
     }
 
     return result.data.project;
 };
 
+// DELETE PROJECT
 export const deleteProject = async (
     projectId: string
 ): Promise<void> => {
-    const token = sessionStorage.getItem("accessToken");
-
-    if (!token) {
-        throw new Error("Please log in to delete a project.");
-    }
-
     const response = await fetch(
         `${API_URL}/projects/${projectId}`,
         {
             method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+            headers: getAuthHeaders(),
         }
     );
 
-    const result = await response.json();
+    const result: ApiResponse = await response.json();
 
     if (!response.ok) {
-        throw new Error(
-            result.message || "Failed to delete project"
-        );
+        throw new Error(result.message || "Failed to delete project.");
     }
 };
