@@ -1,5 +1,8 @@
 import { registerSchema } from "./auth.validation.js";
 import { registerUser } from "./auth.service.js";
+import { loginSchema } from "./auth.validation.js";
+import { loginUser } from "./auth.service.js";
+
 
 export const register = async (req, res) => {
     try {
@@ -52,6 +55,59 @@ export const register = async (req, res) => {
         }
 
         console.error("Registration error:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
+};
+
+
+export const login = async (req, res) => {
+    try {
+        // Validate request
+        const validation = loginSchema.safeParse(req.body);
+
+        if (!validation.success) {
+            return res.status(400).json({
+                success: false,
+                message: "Validation failed",
+                errors: validation.error.issues.map((issue) => ({
+                    field: issue.path.join("."),
+                    message: issue.message,
+                })),
+            });
+        }
+
+        // Authenticate user
+        const { user, accessToken } = await loginUser(
+            validation.data
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: "Login successful",
+            data: {
+                user: {
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    role: user.role,
+                },
+                accessToken,
+            },
+        });
+
+    } catch (error) {
+        if (error.statusCode === 401) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password",
+            });
+        }
+
+        console.error("Login error:", error);
 
         return res.status(500).json({
             success: false,
