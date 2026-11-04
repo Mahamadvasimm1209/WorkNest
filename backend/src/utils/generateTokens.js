@@ -5,13 +5,14 @@ export const generateAccessToken = (user) => {
         {
             sub: user._id.toString(),
             role: user.role,
+            type: "access",
         },
         process.env.JWT_ACCESS_SECRET,
         {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN || "15m",
             issuer: "taskflow-api",
             audience: "taskflow-client",
+            algorithm: "HS256",
         }
     );
 };
-

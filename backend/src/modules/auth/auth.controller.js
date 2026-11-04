@@ -7,6 +7,7 @@ import {
     registerUser,
     loginUser,
 } from "./auth.service.js";
+import { getCurrentUser } from "./auth.service.js";
 
 
 export const register = async (req, res) => {
@@ -113,6 +114,42 @@ export const login = async (req, res) => {
         }
 
         console.error("Login error:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
+};
+
+export const getMe = async (req, res) => {
+    try {
+        const user = await getCurrentUser(req.user.id);
+
+        return res.status(200).json({
+            success: true,
+            message: "Current user retrieved successfully",
+            data: {
+                user: {
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    role: user.role,
+                    isActive: user.isActive,
+                    createdAt: user.createdAt,
+                },
+            },
+        });
+
+    } catch (error) {
+        if (error.statusCode === 404 || error.statusCode === 401) {
+            return res.status(error.statusCode).json({
+                success: false,
+                message: error.message,
+            });
+        }
+
+        console.error("Get current user error:", error);
 
         return res.status(500).json({
             success: false,

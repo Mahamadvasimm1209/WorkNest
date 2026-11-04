@@ -54,3 +54,21 @@ export const loginUser = async ({ email, password }) => {
         accessToken,
     };
 };
+
+export const getCurrentUser = async (userId) => {
+    const user = await User.findById(userId);
+
+    if (!user) {
+        const error = new Error("User account not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    if (!user.isActive) {
+        const error = new Error("Account is inactive");
+        error.statusCode = 401;
+        throw error;
+    }
+
+    return user;
+};

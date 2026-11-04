@@ -5,6 +5,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import authRoutes from "./modules/auth/auth.routes.js";
+import { authenticate } from "./middleware/authenticate.js";
 
 const app = express();
 
@@ -33,6 +34,15 @@ app.use("/api/v1/auth", authRoutes);
 if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
+
+
+app.get("/api/v1/protected-test", authenticate, (req, res) => {
+    return res.status(200).json({
+        success: true,
+        message: "You accessed a protected route!",
+        user: req.user,
+    });
+});
 
 // Health check API
 app.get("/api/v1/health", (req, res) => {
