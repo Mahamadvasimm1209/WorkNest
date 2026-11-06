@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./modules/auth/auth.routes.js";
 import projectRoutes from "./modules/projects/project.routes.js";
 import taskRoutes from "./modules/tasks/task.routes.js";
+import teamRoutes from "./modules/teams/team.routes.js";
 
 import { authenticate } from "./middleware/authenticate.js";
 
@@ -38,6 +39,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/projects", projectRoutes);
 app.use("/api/v1/tasks", taskRoutes);
+app.use("/api/v1/teams", teamRoutes);
 
 // Protected route for authentication testing
 app.get("/api/v1/protected-test", authenticate, (req, res) => {

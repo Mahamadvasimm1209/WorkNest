@@ -43,19 +43,11 @@ export const loginUser = async ({ email, password }) => {
         throw error;
     }
 
-    // Generate access token
     const accessToken = generateAccessToken(user);
-
-    // Generate opaque refresh token
     const refreshToken = generateRefreshToken();
-
-    // Hash refresh token before database storage
     const refreshTokenHash = hashRefreshToken(refreshToken);
-
-    // Calculate session expiration
     const expiresAt = getRefreshTokenExpiry();
 
-    // Create persistent session
     await Session.create({
         user: user._id,
         refreshTokenHash,
@@ -86,4 +78,64 @@ export const getCurrentUser = async (userId) => {
     }
 
     return user;
+};
+
+// Update profile
+export const updateCurrentUser = async (userId, updates) => {
+    const user = await getCurrentUser(userId);
+
+    if (updates.email && updates.email !== user.email) {
+        const existingUser = await User.findOne({
+            email: updates.email,
+            _id: { $ne: userId },
+        });
+
+        if (existingUser) {
+            const error = new Error("Email is already registered");
+            error.statusCode = 409;
+            throw error;
+        }
+    }
+
+    if (updates.name !== undefined) {
+        user.name = updates.name;
+    }
+
+    if (updates.email !== undefined) {
+        user.email = updates.email;
+    }
+
+    await user.save();
+
+    return user;
+};
+
+// Change password
+export const changeCurrentPassword = async (
+    userId,
+    currentPassword,
+    newPassword
+) => {
+    const user = await User.findById(userId).select("+password");
+
+    if (!user || !user.isActive) {
+        const error = new Error("User account not found or inactive");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    const isPasswordValid = await user.comparePassword(currentPassword);
+
+    if (!isPasswordValid) {
+        const error = new Error("Current password is incorrect");
+        error.statusCode = 400;
+        throw error;
+    }
+
+    user.password = newPassword;
+
+    // The existing Mongoose pre-save hook hashes this password.
+    await user.save();
+
+    return true;
 };

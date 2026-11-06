@@ -113,12 +113,22 @@ export default function DashboardPage() {
     };
 
     // Navigation
+    // Navigation
     const handleNavigation = (page: string) => {
         setSidebarOpen(false);
 
-        // Open the actual Tasks page
         if (page === "My Tasks") {
             router.push("/dashboard/tasks");
+            return;
+        }
+
+        if (page === "Team") {
+            router.push("/dashboard/teams");
+            return;
+        }
+
+        if (page === "Settings") {
+            router.push("/dashboard/settings");
             return;
         }
 

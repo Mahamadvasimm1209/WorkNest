@@ -1,5 +1,13 @@
 import express from "express";
-import { register, login, getMe } from "./auth.controller.js";
+
+import {
+    register,
+    login,
+    getMe,
+    updateMe,
+    changePassword,
+} from "./auth.controller.js";
+
 import { authenticate } from "../../middleware/authenticate.js";
 import { authLimiter } from "../../middleware/rateLimiter.js";
 import { authorize } from "../../middleware/authorize.js";
@@ -9,8 +17,11 @@ const router = express.Router();
 router.post("/register", authLimiter, register);
 router.post("/login", authLimiter, login);
 
-// Protected route
+// Protected account routes
 router.get("/me", authenticate, getMe);
+router.patch("/me", authenticate, updateMe);
+router.patch("/change-password", authenticate, changePassword);
+
 router.get(
     "/admin-test",
     authenticate,
