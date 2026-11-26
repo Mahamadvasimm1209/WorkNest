@@ -422,18 +422,3 @@ This project provided practical experience in:
 
 ---
 
-## Author
-
-**Mohammad Vasim M**
-
-B.Tech – Artificial Intelligence and Machine Learning
-
-GitHub: [Mahamadvasimm1209](https://github.com/Mahamadvasimm1209)
-
-LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/mahamad-vasim-m-221839351/)
-
----
-
-## License
-
-This project is developed for educational and portfolio purposes. Add a formal license file if you intend to distribute it under a specific open-source license.
