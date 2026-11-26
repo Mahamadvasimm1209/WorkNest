@@ -347,8 +347,3 @@ The backend exposes RESTful APIs under:
 | DELETE | `/teams/:teamId` | Delete team |
 
 
-- Request validation and application security.
-- Git and GitHub version control.
-
----
-
