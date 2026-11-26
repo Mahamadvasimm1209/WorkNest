@@ -14,7 +14,7 @@ const startServer = async () => {
         const PORT = process.env.PORT || 5000;
 
         const server = app.listen(PORT, () => {
-            console.log(`TaskFlow API running on port ${PORT}`);
+            console.log(`WorkNest API running on port ${PORT}`);
         });
 
         server.on("error", (error) => {

@@ -412,7 +412,7 @@ export default function SettingsPage() {
                                         Change password
                                     </h2>
                                     <p className="text-sm text-slate-500">
-                                        Protect your TaskFlow account.
+                                        Protect your WorkNest account.
                                     </p>
                                 </div>
                             </div>

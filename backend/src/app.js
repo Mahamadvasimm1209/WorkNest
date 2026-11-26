@@ -57,7 +57,7 @@ app.get("/api/v1/health", (req, res) => {
     return res.status(databaseConnected ? 200 : 503).json({
         success: databaseConnected,
         message: databaseConnected
-            ? "TaskFlow API is healthy"
+            ? "WorkNest API is healthy"
             : "Database connection unavailable",
         database: databaseConnected ? "connected" : "disconnected",
     });

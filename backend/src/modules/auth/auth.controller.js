@@ -87,7 +87,7 @@ export const login = async (req, res) => {
         const { user, accessToken, refreshToken, expiresAt } =
             await loginUser(validation.data);
 
-        res.cookie("taskflow_refresh_token", refreshToken, {
+        res.cookie("worknest_refresh_token", refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",

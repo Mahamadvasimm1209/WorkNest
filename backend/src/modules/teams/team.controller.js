@@ -222,7 +222,7 @@ export const addTeamMember = async (req, res) => {
         if (!user) {
             return res.status(404).json({
                 success: false,
-                message: "No active TaskFlow account found with this email",
+                message: "No active WorkNest account found with this email",
             });
         }
 

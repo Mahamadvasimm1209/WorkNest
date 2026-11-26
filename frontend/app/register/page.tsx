@@ -105,7 +105,7 @@ export default function RegisterPage() {
                     </div>
 
                     <span className="text-2xl font-bold">
-                        TaskFlow
+                        WorkNest
                     </span>
                 </Link>
 
@@ -116,12 +116,12 @@ export default function RegisterPage() {
 
                     <p className="mt-6 text-lg leading-8 text-slate-300">
                         Create your workspace, organize your projects,
-                        and bring your team together with TaskFlow.
+                        and bring your team together with workNest.
                     </p>
                 </div>
 
                 <p className="text-sm text-slate-400">
-                    © 2026 TaskFlow. Built for better teamwork.
+                    © 2026 WorkNest. Built for better teamwork.
                 </p>
 
             </section>
@@ -140,7 +140,7 @@ export default function RegisterPage() {
                         </div>
 
                         <span className="text-2xl font-bold">
-                            TaskFlow
+                            WorkNest
                         </span>
                     </Link>
 
@@ -150,7 +150,7 @@ export default function RegisterPage() {
                         </h2>
 
                         <p className="mt-3 text-slate-500">
-                            Get started with TaskFlow today.
+                            Get started with WorkNest today.
                         </p>
                     </div>
 

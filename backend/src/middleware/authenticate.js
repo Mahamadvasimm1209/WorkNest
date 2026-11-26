@@ -29,8 +29,8 @@ export const authenticate = (req, res, next) => {
             process.env.JWT_ACCESS_SECRET,
             {
                 algorithms: ["HS256"],
-                issuer: "taskflow-api",
-                audience: "taskflow-client",
+                issuer: "worknest-api",
+                audience: "worknest-client",
             }
         );
 

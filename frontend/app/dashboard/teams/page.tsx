@@ -449,7 +449,7 @@ export default function TeamsPage() {
 
                         <div>
                             <h1 className="text-xl font-bold text-slate-900">
-                                TaskFlow
+                                WorkNest
                             </h1>
                             <p className="text-xs text-slate-400">
                                 Team Management
@@ -587,8 +587,8 @@ export default function TeamsPage() {
                                             key={team._id}
                                             onClick={() => handleSelectTeam(team._id)}
                                             className={`w-full rounded-xl border p-4 text-left transition ${selectedTeam?._id === team._id
-                                                    ? "border-indigo-200 bg-indigo-50"
-                                                    : "border-transparent hover:border-slate-200 hover:bg-slate-50"
+                                                ? "border-indigo-200 bg-indigo-50"
+                                                : "border-transparent hover:border-slate-200 hover:bg-slate-50"
                                                 }`}
                                         >
                                             <div className="flex items-center gap-3">
@@ -779,7 +779,7 @@ export default function TeamsPage() {
                                             </h4>
 
                                             <p className="mt-1 text-sm text-slate-400">
-                                                Add someone who already has a registered TaskFlow account.
+                                                Add someone who already has a registered WorkNest account.
                                             </p>
 
                                             <form

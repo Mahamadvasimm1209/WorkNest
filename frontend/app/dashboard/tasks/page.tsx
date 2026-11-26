@@ -359,7 +359,7 @@ export default function TasksPage() {
     }
 
     return (
-        <main className="min-h-screen bg-[#090d18] text-white">
+        <main className="min-h-screen bg-slate-50 text-slate-900">
             <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
                 {/* HEADER */}
@@ -367,22 +367,22 @@ export default function TasksPage() {
                     <div>
                         <Link
                             href="/dashboard"
-                            className="mb-4 inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-white"
+                            className="mb-4 inline-flex items-center gap-2 text-sm text-slate-500 transition hover:text-slate-900"
                         >
                             <ArrowLeft size={16} />
                             Back to Dashboard
                         </Link>
 
                         <div className="flex items-center gap-3">
-                            <div className="rounded-xl bg-indigo-500/15 p-3 text-indigo-400">
+                            <div className="rounded-xl bg-indigo-50 p-3 text-indigo-600">
                                 <ListTodo size={25} />
                             </div>
 
                             <div>
-                                <h1 className="text-2xl font-bold sm:text-3xl">
+                                <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
                                     My Tasks
                                 </h1>
-                                <p className="mt-1 text-sm text-slate-400">
+                                <p className="mt-1 text-sm text-slate-500">
                                     Manage and track your project tasks.
                                 </p>
                             </div>
@@ -393,7 +393,7 @@ export default function TasksPage() {
                         <button
                             onClick={loadData}
                             disabled={loading}
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-700 px-4 py-3 text-sm text-slate-300 transition hover:bg-slate-800 disabled:opacity-50"
+                            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 transition hover:bg-slate-50 disabled:opacity-50"
                         >
                             <RefreshCw
                                 size={16}
@@ -405,7 +405,7 @@ export default function TasksPage() {
                         <button
                             onClick={openCreateModal}
                             disabled={projects.length === 0}
-                            className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
                         >
                             <Plus size={18} />
                             New Task
@@ -415,7 +415,7 @@ export default function TasksPage() {
 
                 {/* MESSAGES */}
                 {success && (
-                    <div className="mb-5 flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-sm text-emerald-300">
+                    <div className="mb-5 flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
                         <CheckCircle2 size={17} />
                         {success}
                         <button
@@ -428,7 +428,7 @@ export default function TasksPage() {
                 )}
 
                 {error && (
-                    <div className="mb-5 flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-300">
+                    <div className="mb-5 flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
                         <AlertCircle size={17} />
                         {error}
                         <button
@@ -470,7 +470,7 @@ export default function TasksPage() {
                 </section>
 
                 {/* FILTERS */}
-                <section className="mb-6 rounded-2xl border border-slate-800 bg-[#111827] p-4">
+                <section className="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
                         <div className="relative lg:col-span-2">
                             <Search
@@ -483,7 +483,7 @@ export default function TasksPage() {
                                     setSearch(event.target.value)
                                 }
                                 placeholder="Search tasks or projects..."
-                                className="w-full rounded-xl border border-slate-700 bg-[#0b1220] py-3 pl-10 pr-4 text-sm outline-none transition placeholder:text-slate-500 focus:border-indigo-500"
+                                className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                             />
                         </div>
 
@@ -492,7 +492,7 @@ export default function TasksPage() {
                             onChange={(event) =>
                                 setProjectFilter(event.target.value)
                             }
-                            className="rounded-xl border border-slate-700 bg-[#0b1220] px-3 py-3 text-sm text-slate-300 outline-none focus:border-indigo-500"
+                            className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-700 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                         >
                             <option value="all">All Projects</option>
                             {projects.map((project) => (
@@ -507,7 +507,7 @@ export default function TasksPage() {
                             onChange={(event) =>
                                 setStatusFilter(event.target.value)
                             }
-                            className="rounded-xl border border-slate-700 bg-[#0b1220] px-3 py-3 text-sm text-slate-300 outline-none focus:border-indigo-500"
+                            className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-700 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                         >
                             <option value="all">All Statuses</option>
                             <option value="todo">To Do</option>
@@ -521,7 +521,7 @@ export default function TasksPage() {
                             onChange={(event) =>
                                 setPriorityFilter(event.target.value)
                             }
-                            className="rounded-xl border border-slate-700 bg-[#0b1220] px-3 py-3 text-sm text-slate-300 outline-none focus:border-indigo-500"
+                            className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-700 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                         >
                             <option value="all">All Priorities</option>
                             <option value="low">Low</option>
@@ -540,7 +540,7 @@ export default function TasksPage() {
                             onChange={(event) =>
                                 setSortOrder(event.target.value)
                             }
-                            className="rounded-lg border border-slate-700 bg-[#0b1220] px-3 py-2 text-xs text-slate-300 outline-none"
+                            className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 outline-none focus:border-indigo-500"
                         >
                             <option value="newest">Newest first</option>
                             <option value="oldest">Oldest first</option>
@@ -552,17 +552,17 @@ export default function TasksPage() {
                 {/* TASK LIST */}
                 <section>
                     {loading ? (
-                        <div className="rounded-2xl border border-slate-800 bg-[#111827] p-12 text-center">
+                        <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
                             <RefreshCw
                                 size={25}
-                                className="mx-auto animate-spin text-indigo-400"
+                                className="mx-auto animate-spin text-indigo-600"
                             />
-                            <p className="mt-3 text-sm text-slate-400">
+                            <p className="mt-3 text-sm text-slate-500">
                                 Loading your tasks...
                             </p>
                         </div>
                     ) : projects.length === 0 ? (
-                        <div className="rounded-2xl border border-dashed border-slate-700 bg-[#111827] px-6 py-14 text-center">
+                        <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center shadow-sm">
                             <FolderKanban
                                 size={35}
                                 className="mx-auto text-slate-500"
@@ -570,19 +570,19 @@ export default function TasksPage() {
                             <h2 className="mt-4 text-lg font-semibold">
                                 Create a project first
                             </h2>
-                            <p className="mt-2 text-sm text-slate-400">
+                            <p className="mt-2 text-sm text-slate-500">
                                 Tasks must belong to a project. Create a project
                                 before adding your first task.
                             </p>
                             <Link
                                 href="/dashboard"
-                                className="mt-5 inline-flex rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold hover:bg-indigo-500"
+                                className="mt-5 inline-flex rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-700"
                             >
                                 Go to Dashboard
                             </Link>
                         </div>
                     ) : filteredTasks.length === 0 ? (
-                        <div className="rounded-2xl border border-dashed border-slate-700 bg-[#111827] px-6 py-14 text-center">
+                        <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center shadow-sm">
                             <ListTodo
                                 size={35}
                                 className="mx-auto text-slate-500"
@@ -590,12 +590,12 @@ export default function TasksPage() {
                             <h2 className="mt-4 text-lg font-semibold">
                                 No tasks found
                             </h2>
-                            <p className="mt-2 text-sm text-slate-400">
+                            <p className="mt-2 text-sm text-slate-500">
                                 Create a task or change your search and filters.
                             </p>
                             <button
                                 onClick={openCreateModal}
-                                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold hover:bg-indigo-500"
+                                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-700"
                             >
                                 <Plus size={17} />
                                 Create Task
@@ -621,14 +621,14 @@ export default function TasksPage() {
 
             {/* CREATE / EDIT MODAL */}
             {showModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/70 p-4">
-                    <div className="my-auto w-full max-w-xl rounded-2xl border border-slate-700 bg-[#111827] p-6 shadow-2xl">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-900/40 p-4 backdrop-blur-sm">
+                    <div className="my-auto w-full max-w-xl rounded-2xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl">
                         <div className="mb-6 flex items-center justify-between">
                             <div>
-                                <h2 className="text-xl font-bold">
+                                <h2 className="text-xl font-bold text-slate-900">
                                     {editingTask ? "Edit Task" : "Create Task"}
                                 </h2>
-                                <p className="mt-1 text-sm text-slate-400">
+                                <p className="mt-1 text-sm text-slate-500">
                                     Add details and organize your work.
                                 </p>
                             </div>
@@ -636,7 +636,7 @@ export default function TasksPage() {
                             <button
                                 onClick={closeModal}
                                 disabled={saving}
-                                className="rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-white"
+                                className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
                             >
                                 <X size={20} />
                             </button>
@@ -644,7 +644,7 @@ export default function TasksPage() {
 
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-slate-300">
+                                <label className="mb-2 block text-sm font-medium text-slate-700">
                                     Task title *
                                 </label>
                                 <input
@@ -659,12 +659,12 @@ export default function TasksPage() {
                                         )
                                     }
                                     placeholder="e.g. Build authentication page"
-                                    className="w-full rounded-xl border border-slate-700 bg-[#0b1220] px-4 py-3 text-sm outline-none focus:border-indigo-500"
+                                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                                 />
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-slate-300">
+                                <label className="mb-2 block text-sm font-medium text-slate-700">
                                     Description
                                 </label>
                                 <textarea
@@ -678,12 +678,12 @@ export default function TasksPage() {
                                         )
                                     }
                                     placeholder="Describe what needs to be done..."
-                                    className="w-full resize-none rounded-xl border border-slate-700 bg-[#0b1220] px-4 py-3 text-sm outline-none focus:border-indigo-500"
+                                    className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                                 />
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-slate-300">
+                                <label className="mb-2 block text-sm font-medium text-slate-700">
                                     Project *
                                 </label>
                                 <select
@@ -695,7 +695,7 @@ export default function TasksPage() {
                                             event.target.value
                                         )
                                     }
-                                    className="w-full rounded-xl border border-slate-700 bg-[#0b1220] px-4 py-3 text-sm outline-none focus:border-indigo-500"
+                                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                                 >
                                     <option value="">Select a project</option>
                                     {projects.map((project) => (
@@ -711,7 +711,7 @@ export default function TasksPage() {
 
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-slate-300">
+                                    <label className="mb-2 block text-sm font-medium text-slate-700">
                                         Status
                                     </label>
                                     <select
@@ -722,7 +722,7 @@ export default function TasksPage() {
                                                 event.target.value
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-700 bg-[#0b1220] px-4 py-3 text-sm outline-none focus:border-indigo-500"
+                                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                                     >
                                         <option value="todo">To Do</option>
                                         <option value="in-progress">
@@ -736,7 +736,7 @@ export default function TasksPage() {
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-slate-300">
+                                    <label className="mb-2 block text-sm font-medium text-slate-700">
                                         Priority
                                     </label>
                                     <select
@@ -747,7 +747,7 @@ export default function TasksPage() {
                                                 event.target.value
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-700 bg-[#0b1220] px-4 py-3 text-sm outline-none focus:border-indigo-500"
+                                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                                     >
                                         <option value="low">Low</option>
                                         <option value="medium">Medium</option>
@@ -757,7 +757,7 @@ export default function TasksPage() {
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-slate-300">
+                                <label className="mb-2 block text-sm font-medium text-slate-700">
                                     Due date
                                 </label>
                                 <input
@@ -769,12 +769,12 @@ export default function TasksPage() {
                                             event.target.value
                                         )
                                     }
-                                    className="w-full rounded-xl border border-slate-700 bg-[#0b1220] px-4 py-3 text-sm outline-none focus:border-indigo-500"
+                                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                                 />
                             </div>
 
                             {formError && (
-                                <p className="rounded-lg bg-red-500/10 p-3 text-sm text-red-300">
+                                <p className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
                                     {formError}
                                 </p>
                             )}
@@ -784,7 +784,7 @@ export default function TasksPage() {
                                     type="button"
                                     onClick={closeModal}
                                     disabled={saving}
-                                    className="rounded-xl border border-slate-700 px-5 py-3 text-sm text-slate-300 hover:bg-slate-800"
+                                    className="rounded-xl border border-slate-200 px-5 py-3 text-sm text-slate-700 hover:bg-slate-50"
                                 >
                                     Cancel
                                 </button>
@@ -792,7 +792,7 @@ export default function TasksPage() {
                                 <button
                                     type="submit"
                                     disabled={saving}
-                                    className="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold hover:bg-indigo-500 disabled:opacity-60"
+                                    className="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-60"
                                 >
                                     {saving
                                         ? "Saving..."
@@ -808,17 +808,17 @@ export default function TasksPage() {
 
             {/* DELETE CONFIRMATION */}
             {deletingTask && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-                    <div className="w-full max-w-md rounded-2xl border border-slate-700 bg-[#111827] p-6 shadow-2xl">
-                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-400">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl">
+                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-600">
                             <Trash2 size={23} />
                         </div>
 
-                        <h2 className="text-xl font-bold">Delete task?</h2>
+                        <h2 className="text-xl font-bold text-slate-900">Delete task?</h2>
 
-                        <p className="mt-2 text-sm text-slate-400">
+                        <p className="mt-2 text-sm text-slate-500">
                             Are you sure you want to delete{" "}
-                            <span className="font-semibold text-white">
+                            <span className="font-semibold text-slate-900">
                                 {deletingTask.title}
                             </span>
                             ? This action cannot be undone.
@@ -827,14 +827,14 @@ export default function TasksPage() {
                         <div className="mt-6 flex justify-end gap-3">
                             <button
                                 onClick={() => setDeletingTask(null)}
-                                className="rounded-xl border border-slate-700 px-5 py-3 text-sm text-slate-300 hover:bg-slate-800"
+                                className="rounded-xl border border-slate-200 px-5 py-3 text-sm text-slate-700 hover:bg-slate-50"
                             >
                                 Cancel
                             </button>
 
                             <button
                                 onClick={handleDelete}
-                                className="rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold hover:bg-red-500"
+                                className="rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white hover:bg-red-700"
                             >
                                 Delete Task
                             </button>
@@ -856,12 +856,12 @@ function StatCard({
     icon: React.ReactNode;
 }) {
     return (
-        <div className="rounded-2xl border border-slate-800 bg-[#111827] p-4">
-            <div className="mb-3 flex items-center justify-between text-slate-400">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="mb-3 flex items-center justify-between text-slate-500">
                 <span className="text-xs sm:text-sm">{label}</span>
                 {icon}
             </div>
-            <p className="text-2xl font-bold">{value}</p>
+            <p className="text-2xl font-bold text-slate-900">{value}</p>
         </div>
     );
 }
@@ -880,24 +880,24 @@ function TaskCard({
     const overdue = isOverdue(task);
 
     const priorityStyle: Record<TaskPriority, string> = {
-        low: "bg-slate-500/10 text-slate-300 border-slate-500/20",
-        medium: "bg-amber-500/10 text-amber-300 border-amber-500/20",
-        high: "bg-red-500/10 text-red-300 border-red-500/20",
+        low: "bg-slate-100 text-slate-700 border-slate-200",
+        medium: "bg-amber-50 text-amber-700 border-amber-200",
+        high: "bg-red-50 text-red-700 border-red-200",
     };
 
     const statusStyle: Record<TaskStatus, string> = {
-        todo: "bg-slate-500/10 text-slate-300",
-        "in-progress": "bg-blue-500/10 text-blue-300",
-        review: "bg-purple-500/10 text-purple-300",
-        completed: "bg-emerald-500/10 text-emerald-300",
+        todo: "bg-slate-100 text-slate-700",
+        "in-progress": "bg-blue-50 text-blue-700",
+        review: "bg-purple-50 text-purple-700",
+        completed: "bg-emerald-50 text-emerald-700",
     };
 
     return (
-        <article className="rounded-2xl border border-slate-800 bg-[#111827] p-4 transition hover:border-slate-700 sm:p-5">
+        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-slate-200 sm:p-5">
             <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
                 <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="break-words text-base font-semibold">
+                        <h3 className="break-words text-base font-semibold text-slate-900">
                             {task.title}
                         </h3>
 
@@ -908,14 +908,14 @@ function TaskCard({
                         </span>
 
                         {overdue && (
-                            <span className="rounded-full bg-red-500/10 px-2.5 py-1 text-xs text-red-300">
+                            <span className="rounded-full bg-red-50 px-2.5 py-1 text-xs text-red-700">
                                 Overdue
                             </span>
                         )}
                     </div>
 
                     {task.description && (
-                        <p className="mt-2 line-clamp-2 text-sm text-slate-400">
+                        <p className="mt-2 line-clamp-2 text-sm text-slate-500">
                             {task.description}
                         </p>
                     )}
@@ -927,7 +927,7 @@ function TaskCard({
                         </span>
 
                         <span
-                            className={`inline-flex items-center gap-1.5 ${overdue ? "text-red-300" : ""
+                            className={`inline-flex items-center gap-1.5 ${overdue ? "text-red-700" : ""
                                 }`}
                         >
                             <CalendarDays size={14} />
@@ -942,7 +942,7 @@ function TaskCard({
                         onChange={(event) =>
                             onStatusChange(event.target.value as TaskStatus)
                         }
-                        className={`rounded-lg border border-slate-700 bg-[#0b1220] px-3 py-2 text-xs outline-none ${statusStyle[task.status]}`}
+                        className={`rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 outline-none focus:border-indigo-500 ${statusStyle[task.status]}`}
                         aria-label={`Change status for ${task.title}`}
                     >
                         <option value="todo">To Do</option>
@@ -954,7 +954,7 @@ function TaskCard({
                     <button
                         onClick={onEdit}
                         title="Edit task"
-                        className="rounded-lg border border-slate-700 p-2.5 text-slate-400 transition hover:border-indigo-500 hover:text-indigo-400"
+                        className="rounded-lg border border-slate-200 p-2.5 text-slate-500 transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
                     >
                         <Pencil size={16} />
                     </button>
@@ -962,7 +962,7 @@ function TaskCard({
                     <button
                         onClick={onDelete}
                         title="Delete task"
-                        className="rounded-lg border border-slate-700 p-2.5 text-slate-400 transition hover:border-red-500 hover:text-red-400"
+                        className="rounded-lg border border-slate-200 p-2.5 text-slate-500 transition hover:border-red-300 hover:bg-red-50 hover:text-red-600"
                     >
                         <Trash2 size={16} />
                     </button>

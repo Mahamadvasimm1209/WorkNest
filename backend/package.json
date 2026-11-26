@@ -1,7 +1,7 @@
 {
-  "name": "taskflow-backend",
+  "name": "worknest-backend",
   "version": "1.0.0",
-  "description": "TaskFlow backend API",
+  "description": "WorkNest backend API",
   "main": "src/server.js",
   "type": "module",
   "scripts": {

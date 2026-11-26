@@ -10,8 +10,8 @@ export const generateAccessToken = (user) => {
         process.env.JWT_ACCESS_SECRET,
         {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN || "15m",
-            issuer: "taskflow-api",
-            audience: "taskflow-client",
+            issuer: "worknest-api",
+            audience: "worknest-client",
             algorithm: "HS256",
         }
     );

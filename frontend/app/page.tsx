@@ -67,7 +67,7 @@ export default function Home() {
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#7167ff] text-xl font-bold">
             T
           </div>
-          <span className="text-2xl font-bold">TaskFlow</span>
+          <span className="text-2xl font-bold">WorkNest</span>
         </div>
 
         <div className="max-w-lg">
@@ -102,7 +102,7 @@ export default function Home() {
         </div>
 
         <p className="text-sm text-slate-400">
-          © 2026 TaskFlow. Built for better teamwork.
+          © 2026 WorkNest. Built for better teamwork.
         </p>
       </section>
 
@@ -112,7 +112,7 @@ export default function Home() {
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#635bff] text-xl font-bold text-white">
               T
             </div>
-            <span className="text-2xl font-bold">TaskFlow</span>
+            <span className="text-2xl font-bold">WorkNest</span>
           </div>
 
           <div className="mb-8">
@@ -193,7 +193,7 @@ export default function Home() {
           </p>
 
           <p className="mt-10 text-center text-xs text-slate-400">
-            Secure access to your TaskFlow workspace
+            Secure access to your WorkNest workspace
           </p>
         </div>
       </section>

@@ -391,7 +391,7 @@ export default function DashboardPage() {
                     </div>
 
                     <span className="text-2xl font-bold tracking-tight text-slate-900">
-                        TaskFlow
+                        WorkNest
                     </span>
                 </div>
 
@@ -467,7 +467,7 @@ export default function DashboardPage() {
 
                         <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-semibold">
-                                TaskFlow User
+                                WorkNest User
                             </p>
                             <p className="truncate text-xs text-slate-400">
                                 user@example.com
